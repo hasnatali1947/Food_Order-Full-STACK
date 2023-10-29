@@ -5,9 +5,8 @@ import { useStateContext } from "../context/context";
 
 const Cart = () => {
   const { cart, setCart, removeFromCart } = useStateContext();
-
   const totalCartPrice = cart.reduce((total, selectedPizza) => total + selectedPizza.price, 0);
-
+  
   const changeQuantity = (selectedPizza, newSize, newQuantity) => {
     if (newQuantity >= 1) {
 

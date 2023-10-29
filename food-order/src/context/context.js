@@ -9,10 +9,11 @@ export const StateContext = ({ children }) => {
     const [pizzaData, setPizzaData] = useState([]);
     const initialCartData = JSON.parse(localStorage.getItem("cartData")) || [];
     const [cart, setCart] = useState(initialCartData);
-
+    
     useEffect(() => {
         localStorage.setItem("cartData", JSON.stringify(cart));
     },[cart])
+    
     const removeFromCart = (index) => {
         const updatedCart = [...cart];
         updatedCart.splice(index, 1);

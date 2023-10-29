@@ -46,6 +46,70 @@ cursor: pointer;
 font-weight: 600;
 }
 
+.nameBtn{
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.notDrop{
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  height: 3vh;
+  border: none;
+  padding: 5px;
+}
+
+.dropbtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #4caf4fe6;
+  color: white;
+  height: 3vh;
+  padding: 5px;
+  border-radius: 3px;
+  border: none;
+}
+
+.dropdown-content {
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  color: black;
+}
+
+.openDropDownIcon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2.2vh;
+  margin-left: -20px;
+  transition: 0.3s ease-in-out;
+}
+
+.NotopenDropDownIcon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2.2vh;
+  margin-left: -20px;
+  transform: rotate(90deg);
+  transition: 0.3s ease-in-out;
+}
+
 .homePageContainer {
   display: flex;
   flex-direction: column;
@@ -337,4 +401,172 @@ font-weight: 600;
 
 .cartDustban{
   height: 2vh;
+  cursor: pointer;
+}
+
+/* ----------------------------------------------- LOGIN --------------------------------------------------------------- */
+
+.LoginPage{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.LoginDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid;
+  height: 50vh;
+  width: 50vh;
+  border-radius: 12px;
+  background-color: white;
+}
+
+.LoginDiv h2{
+  font-size: 28px;
+  font-weight: 800;
+  padding-top: 15px;
+}
+
+.loginInputs{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  gap: 20px;
+}
+
+.LoginDiv input{
+  font-size: 14px;
+  height: 5vh;
+  width: 80%;
+  border-radius: 6px;
+  border: none;
+  background-color: white;
+  padding-left: 10px;
+}
+
+.loginButtons{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  gap: 20px;
+}
+
+.LoginDiv button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 8vh;
+  height: 4.5vh;
+  background-color: rgba(17, 64, 219, 0.854);
+  color: white;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.LoginDiv button:hover{
+  background-color: rgba(17, 64, 219, 0.991);
+}
+
+.LoginDiv button:active{
+  background-color: rgba(17, 64, 219, 0.991);
+}
+
+.LoginDiv span{
+  display: flex;
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* ----------------------------------  Register  ---------------------------------------------------------- */
+
+.RegisterPage{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.registerDiv{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid;
+  height: 55vh;
+  width: 55vh;
+  border-radius: 12px;
+  background-color: white;
+}
+
+
+.RegisterPage h2{
+  font-size: 28px;
+  font-weight: 800;
+  padding-top: 15px;
+}
+
+.registerInputs{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  gap: 20px;
+}
+
+.registerInputs input{
+  font-size: 14px;
+  height: 5vh;
+  width: 80%;
+  border-radius: 6px;
+  border: 1px solid gray;
+  padding-left: 10px;
+}
+
+.registerButtons{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  gap: 20px;
+}
+
+.registerButtons button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  height: 4.5vh;
+  background-color: rgba(17, 64, 219, 0.854);
+  color: white;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+
+.registerButtons button:hover{
+  background-color: rgba(17, 64, 219, 0.991);
+}
+
+.registerButtons button:active{
+  background-color: rgba(17, 64, 219, 0.991);
+}
+
+.registerButtons span{
+  display: flex;
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: underline;
 }

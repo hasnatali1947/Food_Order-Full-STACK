@@ -17,7 +17,7 @@ const Pizza = ({ pizza }) => {
 
     const AddToCart = () => {
         const duplicateName = cart.some((addItem) => (addItem._id === pizza._id))
-        if(!duplicateName){
+        if (!duplicateName) {
             const selectedPizza = {
                 _id: pizza._id,
                 name: pizza.name,
@@ -27,7 +27,6 @@ const Pizza = ({ pizza }) => {
                 image: pizza.image,
                 Quantity: Quantity,
             };
-            
             setCart([...cart, selectedPizza]);
         }
     }

@@ -1,19 +1,34 @@
 import Pizza from "../components/Pizza";
 import { useStateContext } from "../context/context";
 import Link from "next/link";
+import Loading from "@/components/Loading";
+import { useEffect, useState } from "react";
+import { dropDown } from "@/utility/imports";
 
 const HomeScreen = () => {
+  const { pizzaData, cart } = useStateContext();
+  const [userData, setUserData] = useState(null);
+  const [isOpen, setIsopen] = useState(false)
 
-  const { pizzaData, cart} = useStateContext()
+  const DropDown = () => {
+    setIsopen(!isOpen)
+  }
 
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    setUserData(userData);
+  }, []);
 
   if (!pizzaData || pizzaData.length === 0) {
     return (
       <div>
-        <p>Loading...</p>
+        <p> <Loading /></p>
       </div>
     );
   }
+
+  const buttonClass = isOpen ? 'dropbtn' : 'notDrop';
+  const DropDownIcon = isOpen ? 'openDropDownIcon' : 'NotopenDropDownIcon';
 
   return (
     <div>
@@ -21,7 +36,25 @@ const HomeScreen = () => {
         <nav>
           <h2>Pizza_House</h2>
           <ul>
-            <li>login</li>
+            <div class="dropdown">
+              {userData ? (
+                <ul className={buttonClass}>
+                <li className="nameBtn" onClick={DropDown}>{userData.name}</li>
+                <li><img className={DropDownIcon} src={dropDown.src}/> </li>
+                </ul>
+              ) : (
+                <Link href="/login">
+                  <li>Login</li>
+                </Link>
+              )}
+              {
+                isOpen && (
+                  <div class="dropdown-content">
+                    <a href="#">Orders</a>
+                    <a href="#">LogOut</a>
+                  </div>
+                )}
+            </div>
             <li>
               <Link href="/cart">Cart</Link> <span className="cartsCount">{cart.length}</span>
             </li>
