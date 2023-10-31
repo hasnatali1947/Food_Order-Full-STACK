@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import {leftArrow, dustban} from "@/utility/imports";
 import { useStateContext } from "../context/context";
+import Checkout from "@/components/Checkout";
 
 const Cart = () => {
   const { cart, setCart, removeFromCart } = useStateContext();
@@ -31,7 +32,7 @@ const Cart = () => {
         <h2>My Cart</h2>
         <div className="SubTotal-PayNow">
           <h2>SubTotal = {totalCartPrice}</h2>
-          <button className="PAY-NOW">PAY NOW</button>
+          <Checkout subTotal={totalCartPrice}/>
         </div>
       </div>
       <ul className="cartItemsMain">
