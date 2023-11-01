@@ -1,20 +1,21 @@
-import axios from 'axios'
-import React from 'react'
-import StripeCheckout from 'react-stripe-checkout'
+"use client"
+import axios from 'axios';
+import React from 'react';
+import StripeCheckout from 'react-stripe-checkout';
+import { useStateContext } from '@/context/context';
 
 export default function Checkout({ subTotal }) {
-
-  // const currentUser = getState().userData
+  const { cart } = useStateContext();
 
   const tokenHandler = async (token) => {
+    console.log(token);
     try {
-
-      const response = await axios.post("http://localhost:5000/api/order/orderRoute", { token, subTotal })
-      const data = response.data
-      console.log("orderData :", data);
+      const response = await axios.post("http://localhost:5000/api/order/orderRoute", { token, subTotal, cart });
+      const data = response.data;
+      console.log("orderData:", data);
 
       if (response.status === 200) {
-        console.log("payment SuccessFully");
+        console.log("payment Successfu lly");
       } else {
         console.log("payment failed");
       }
@@ -22,10 +23,10 @@ export default function Checkout({ subTotal }) {
       console.error(error);
     }
   }
-
+  
   return (
     <div>
-      <StripeCheckout
+    <StripeCheckout
         amount={subTotal * 100}
         shippingAddress
         stripeKey='pk_test_51O6bQ9GaFip5Wq2G5iswiMNb4mXHI4dPCEjaHDI55WYcFsvMXAp0FyswpQ5u6qSr3tvTDjsFPlXZ8Giu6qOaXGCU00rXVtAm3p'

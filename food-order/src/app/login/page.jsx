@@ -1,5 +1,4 @@
 import Login from "@/screens/Login";
-
 import React from 'react'
 
 export default function page() {

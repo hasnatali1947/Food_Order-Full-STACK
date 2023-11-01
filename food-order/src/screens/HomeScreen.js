@@ -50,7 +50,7 @@ const HomeScreen = () => {
               {
                 isOpen && (
                   <div class="dropdown-content">
-                    <a href="#">Orders</a>
+                    <Link href="/myorder">Orders</Link>
                     <a href="#">LogOut</a>
                   </div>
                 )}

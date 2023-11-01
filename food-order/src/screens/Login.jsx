@@ -13,6 +13,7 @@ const Login = () => {
   const [password, setpassword] = useState();
 
   const UserLogin = async (userData) => {
+    console.log("userData", userData);
     try {
       const response = await axios.post("http://localhost:5000/api/user/login", userData)
       return response;
