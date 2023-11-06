@@ -120,7 +120,7 @@ font-weight: 600;
 
 .pizzaContainer {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 10px;
   align-items: center;
   justify-content: center;
@@ -140,16 +140,18 @@ font-weight: 600;
   align-items: center;
   border-radius: 12px;
   height: 100%;
+  padding-bottom: 20px;
 }
 
 .pizzaDiv2 {
-  height: 40vh;
+  height: 100%;
   background-color: white;
   display: flex;
   flex-direction: column;
   border-radius: 12px;
   width: 35vh;
   padding: 16px;
+  padding-bottom: 24px;
   box-shadow: 0px 0px 15px rgba(29, 29, 29, 0.245);
 }
 
@@ -165,6 +167,7 @@ font-weight: 600;
 
 .sizesQuantityDiv {
   display: flex;
+  flex-direction: column;
   margin-top: 12px;
   justify-content: space-around;
 }
@@ -175,7 +178,7 @@ font-weight: 600;
 }
 
 .quantity {
-  gap: 8px;
+  margin-top: 8px;
   display: flex;
 }
 
@@ -241,6 +244,7 @@ font-weight: 600;
 .Popup-pizzaImg {
   margin-top: 20px;
   height: 50vh;
+  width: 60vh;
   border-radius: 12px;
 }
 
@@ -269,7 +273,6 @@ font-weight: 600;
   align-items: center;
   flex-direction: column;
   justify-content: start;
-  border: 2px solid;
   height: 100vh;
 }
 
@@ -283,7 +286,8 @@ font-weight: 600;
 }
 
 .cartPizzaImage{
-  height: 10vh;
+  height: 12vh;
+  width: 14vh;
   border-radius: 10px;
 
 }
@@ -404,6 +408,28 @@ font-weight: 600;
   cursor: pointer;
 }
 
+.loading{
+  position: absolute;
+  border: none;
+  padding: 7px;
+  background-color: rgba(84, 250, 13, 0.861);
+  word-spacing: 0.4px;
+  margin-top: 2vh;
+  color: white;
+  border-radius: 5px;
+}
+
+.PaymentSuccess p{
+  position: absolute;
+  border: none;
+  padding: 7px;
+  background-color: rgba(84, 250, 13, 0.861);
+  word-spacing: 0.4px;
+  margin-top: 2vh;
+  color: white;
+  border-radius: 5px;
+}
+
 /* ----------------------------------------------- LOGIN --------------------------------------------------------------- */
 
 .LoginPage{
@@ -418,11 +444,11 @@ font-weight: 600;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid;
   height: 50vh;
   width: 50vh;
   border-radius: 12px;
   background-color: white;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.179);
 }
 
 .LoginDiv h2{

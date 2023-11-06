@@ -1,3 +1,4 @@
+"use client"
 import Pizza from "../components/Pizza";
 import { useStateContext } from "../context/context";
 import Link from "next/link";
@@ -13,6 +14,15 @@ const HomeScreen = () => {
   const DropDown = () => {
     setIsopen(!isOpen)
   }
+
+  const logOut = () => {
+    const confirmLogOut = window.confirm("Are you sure you want to log out?")
+    if(confirmLogOut) {
+      localStorage.removeItem("userData");
+      localStorage.removeItem("cartData");
+      window.location.href = "/login";
+    }
+  };
 
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("userData"));
@@ -36,6 +46,7 @@ const HomeScreen = () => {
         <nav>
           <h2>Pizza_House</h2>
           <ul>
+            <Link href="/Admin_Panel"><li>AdminPanel</li></Link> 
             <div class="dropdown">
               {userData ? (
                 <ul className={buttonClass}>
@@ -50,8 +61,8 @@ const HomeScreen = () => {
               {
                 isOpen && (
                   <div class="dropdown-content">
-                    <Link href="/myorder">Orders</Link>
-                    <a href="#">LogOut</a>
+                    <Link href="/myorder">My Orders</Link>
+                    <a onClick={logOut}>LogOut</a>
                   </div>
                 )}
             </div>

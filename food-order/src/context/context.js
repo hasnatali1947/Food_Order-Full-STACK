@@ -10,6 +10,7 @@ export const StateContext = ({ children }) => {
     const initialCartData = JSON.parse(localStorage.getItem("cartData")) || [];
     const [cart, setCart] = useState(initialCartData);
     
+    console.log("pizzaData", pizzaData);
     useEffect(() => {
         localStorage.setItem("cartData", JSON.stringify(cart));
     },[cart])
@@ -19,7 +20,7 @@ export const StateContext = ({ children }) => {
         updatedCart.splice(index, 1);
         setCart(updatedCart);
     }
-
+    
     useEffect(() => {
         async function fetchPizzaData() {
             const response = await axios.get("http://localhost:5000/api/pizzas/getallpizzas");
@@ -27,7 +28,7 @@ export const StateContext = ({ children }) => {
             setPizzaData(pizzas);
             console.log("fetching pizzas", pizzas);
         }
-
+        
         fetchPizzaData();
     }, []);
 
@@ -35,6 +36,7 @@ export const StateContext = ({ children }) => {
         <Context.Provider
             value={{
                 pizzaData,
+                setPizzaData,
                 cart,
                 setCart,
                 removeFromCart,

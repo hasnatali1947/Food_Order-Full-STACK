@@ -1,13 +1,13 @@
 import Link from "next/link";
 import React from "react";
-import {leftArrow, dustban} from "@/utility/imports";
+import { leftArrow, dustban } from "@/utility/imports";
 import { useStateContext } from "../context/context";
-import Checkout from "@/components/Checkout";
+import Checkout from "@/components/PayNow";
 
 const Cart = () => {
   const { cart, setCart, removeFromCart } = useStateContext();
   const totalCartPrice = cart.reduce((total, selectedPizza) => total + selectedPizza.price, 0);
-  
+
   const changeQuantity = (selectedPizza, newSize, newQuantity) => {
     if (newQuantity >= 1) {
 
@@ -27,12 +27,12 @@ const Cart = () => {
 
   return (
     <div className="cartContainer">
-      <Link href="/" ><img className="cartbackbtn" src={leftArrow.src} alt="leftArrow" /> </Link>
+      <Link href="HomeScreen" ><img className="cartbackbtn" src={leftArrow.src} alt="leftArrow" /> </Link>
       <div className="cartHeading">
         <h2>My Cart</h2>
         <div className="SubTotal-PayNow">
           <h2>SubTotal = {totalCartPrice}</h2>
-          <Checkout subTotal={totalCartPrice}/>
+          <Checkout subTotal={totalCartPrice} />
         </div>
       </div>
       <ul className="cartItemsMain">
@@ -48,20 +48,23 @@ const Cart = () => {
                 </li>
               </div>
               <li className="cartPrices">
-                prices = {selectedPizza.Quantity} * {selectedPizza.prices[0][selectedPizza.size]} = {selectedPizza.price}
+                Category: {selectedPizza.category}
+              </li>
+              <li className="cartPrices">
+                Prices = {selectedPizza.Quantity} * {selectedPizza.prices[0][selectedPizza.size]} = {selectedPizza.price}
               </li>
               <li className="Cartquantitymain">
                 Quantity:
-              <li className="CartquantityDiv">
-                <span className="subQuantity" onClick={() => changeQuantity(selectedPizza, selectedPizza.size, selectedPizza.Quantity - 1)} >-</span>
-                {selectedPizza.Quantity}{" "}
-                <span className="addQuantity" onClick={() => changeQuantity(selectedPizza, selectedPizza.size, selectedPizza.Quantity + 1)}>+</span>
-              </li>
+                <li className="CartquantityDiv">
+                  <span className="subQuantity" onClick={() => changeQuantity(selectedPizza, selectedPizza.size, selectedPizza.Quantity - 1)} >-</span>
+                  {selectedPizza.Quantity}{" "}
+                  <span className="addQuantity" onClick={() => changeQuantity(selectedPizza, selectedPizza.size, selectedPizza.Quantity + 1)}>+</span>
+                </li>
               </li>
             </div>
             <div className="cartImg-cross">
               <img className="cartPizzaImage" src={selectedPizza.image} alt="pizzaImage" />
-              <img className="cartDustban" onClick={() => removeFromCart(index)} src={dustban.src}/>
+              <img className="cartDustban" onClick={() => removeFromCart(index)} src={dustban.src} />
             </div>
           </ul>
         ))}

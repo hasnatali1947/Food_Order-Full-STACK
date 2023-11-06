@@ -3,6 +3,7 @@ import { useStateContext } from "@/context/context";
 
 const Pizza = ({ pizza }) => {
     const [selectedSize, setSelectedSize] = useState("small");
+    const [selectedCategory, setSelectedCategory] = useState("spicy");
     const [Quantity, setQuantity] = useState(1);
     const [PopupPizza, setPopupPizza] = useState("none")
     const { cart, setCart } = useStateContext()
@@ -22,6 +23,7 @@ const Pizza = ({ pizza }) => {
                 _id: pizza._id,
                 name: pizza.name,
                 size: selectedSize,
+                category: selectedCategory,
                 prices: pizza.prices,
                 price: pizza.prices[0][selectedSize] * Quantity,
                 image: pizza.image,
@@ -37,18 +39,29 @@ const Pizza = ({ pizza }) => {
                 <div className="pizzaDiv2">
                     <h3>{pizza.name}</h3>
                     <img onClick={ClickPizza} className="pizzaImg" src={pizza.image} alt="pizza image" />
+
                     <div className="sizesQuantityDiv">
 
-                        <div className="sizes">
-                            <span> <b>Sizes</b></span>
-                            <select onChange={(e) => setSelectedSize(e.target.value)}>
-                                {pizza.sizes.map((size, sizeIndex) => (
-                                    <option value={size} key={sizeIndex}>
-                                        {size}
-                                    </option>
-                                ))}
-                            </select>
+                        <div className="SizesCategory">
+                            <div className="sizes">
+                                <span> <b>Sizes</b></span>
+                                <select onChange={(e) => setSelectedSize(e.target.value)}>
+                                    {pizza.sizes.map((size, sizeIndex) => (
+                                        <option value={size} key={sizeIndex}>
+                                            {size}
+                                        </option>
+                                    ))}
+                                </select>
 
+                                <span> <b>Category</b> </span>
+                                <select onChange={(e) => setSelectedCategory(e.target.value)}>
+                                    {pizza.category.map((size, sizeIndex) => (
+                                        <option value={size} key={sizeIndex}>
+                                            {size}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
                         </div>
                         <div className="quantity">
                             <span> <b>Quantity</b></span>
@@ -62,6 +75,7 @@ const Pizza = ({ pizza }) => {
                         </div>
                     </div>
                     <div className="priceBtnDiv">
+
                         <span><b>Price: {pizza.prices[0][selectedSize] * Quantity} ./Rs</b></span>
                         <button onClick={() => AddToCart(pizza)} >Add To Cart</button>
                     </div>
