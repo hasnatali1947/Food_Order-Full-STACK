@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const mongooseUrl = "mongodb+srv://hasnatking1947:N1POLZQdO67FWaaC@pizza-app-db.slp3msx.mongodb.net/?retryWrites=true&w=majority";
+const mongooseUrl = "mongodb://hasnatking1947:pakistan123@ac-q9x1csi-shard-00-00.slp3msx.mongodb.net:27017,ac-q9x1csi-shard-00-01.slp3msx.mongodb.net:27017,ac-q9x1csi-shard-00-02.slp3msx.mongodb.net:27017/?ssl=true&replicaSet=atlas-f5g0y3-shard-0&authSource=admin&retryWrites=true&w=majority";
 
 mongoose.connect(mongooseUrl, {
     useNewUrlParser: true,
@@ -18,3 +18,7 @@ db.on('error', (error) => {
 });
 
 module.exports = mongoose;
+
+
+
+// mongodb://hasnatking1947:pakistan123@ac-q9x1csi-shard-00-00.slp3msx.mongodb.net:27017,ac-q9x1csi-shard-00-01.slp3msx.mongodb.net:27017,ac-q9x1csi-shard-00-02.slp3msx.mongodb.net:27017/?ssl=true&replicaSet=atlas-f5g0y3-shard-0&authSource=admin&retryWrites=true&w=majority
