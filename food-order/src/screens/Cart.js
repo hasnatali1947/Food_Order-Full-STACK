@@ -1,4 +1,5 @@
 import Link from "next/link";
+import "../app/styles/cart.css"
 import React from "react";
 import { leftArrow, dustban } from "@/utility/imports";
 import { useStateContext } from "../context/context";

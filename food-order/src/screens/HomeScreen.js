@@ -2,6 +2,7 @@
 import Pizza from "../components/Pizza";
 import { useStateContext } from "../context/context";
 import Link from "next/link";
+import "../app/styles/homePage.css"
 import Loading from "@/components/Loading";
 import { useEffect, useState } from "react";
 import { dropDown } from "@/utility/imports";
@@ -17,7 +18,7 @@ const HomeScreen = () => {
 
   const logOut = () => {
     const confirmLogOut = window.confirm("Are you sure you want to log out?")
-    if(confirmLogOut) {
+    if (confirmLogOut) {
       localStorage.removeItem("userData");
       localStorage.removeItem("cartData");
       window.location.href = "/login";
@@ -46,16 +47,16 @@ const HomeScreen = () => {
         <nav>
           <h2>Pizza_House</h2>
           <ul>
-            <Link href="/Admin_Panel"><li>AdminPanel</li></Link> 
+            <Link href="/Admin_Panel"><li className="AdminPanel-onNav">AdminPanel</li></Link>
             <div class="dropdown">
               {userData ? (
-                <ul className={buttonClass}>
-                <li className="nameBtn" onClick={DropDown}>{userData.name}</li>
-                <li><img className={DropDownIcon} src={dropDown.src}/> </li>
+                <ul>
+                  <li className={buttonClass} onClick={DropDown}>{userData.name}</li>
+                  <li><img className={DropDownIcon} src={dropDown.src} /> </li>
                 </ul>
               ) : (
                 <Link href="/login">
-                  <li>Login</li>
+                  <li className="AdminPanel-onNav">Login</li>
                 </Link>
               )}
               {
@@ -66,12 +67,16 @@ const HomeScreen = () => {
                   </div>
                 )}
             </div>
-            <li>
-              <Link href="/cart">Cart</Link> <span className="cartsCount">{cart.length}</span>
-            </li>
+               <Link  href="/cart">
+                <div className="cartandCountDiv">
+                  <li className="AdminPanel-onNav">Cart</li>
+                  <span className="cartsCount">{cart.length}</span>
+                </div>
+                </Link> 
           </ul>
         </nav>
       </header>
+      
       <div className="homePageContainer">
         <div className="pizzaContainer">
           {pizzaData.map((pizza, index) => (

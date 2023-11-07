@@ -40,7 +40,7 @@ const Login = () => {
       console.log("check name",response);
       if (response.status === 200) {
         localStorage.setItem("userData", JSON.stringify(userData)); 
-        window.location.href = '/';
+        window.location.href = '/HomeScreen';
       }
       else if (response.status === 400) {
         alert("Incorrect email");

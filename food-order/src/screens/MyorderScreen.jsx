@@ -12,6 +12,8 @@ const MyorderScreen = () => {
   const [myOrder, setMyOrder] = useState([])
   const [loading, setLoading] = useState(true)
 
+  console.log("myOrder", myOrder);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -44,9 +46,6 @@ const MyorderScreen = () => {
   return (
     <div className='MyOrderContainer'>
       <h1>My Orders</h1>
-
-      <button></button>
-
       {myOrder.map((item, index) => (
 
         <div key={index} className="orderMainDiv">
@@ -66,6 +65,7 @@ const MyorderScreen = () => {
           <div >
             <h2>Address</h2>
             <div className='fullAddress'>
+              <span> <b>Person Name:</b> {item.name}</span>
               <span> <b>Street:</b> {item.fullAddress.street}</span>
               <span><b>City:</b> {item.fullAddress.City}</span>
               <span> <b>Country:</b> {item.fullAddress.Country}</span>
@@ -77,8 +77,8 @@ const MyorderScreen = () => {
             <div className='OrderInfo'>
             <span><b>Total Amount:</b> {item.orderAmount}</span>
             <span><b>Date:</b> {item.updatedAt.substring(0, 10)}</span>
-            <span><b>Transaction Id:</b> {item.transactionId}</span>
-            <span><b>Order Id:</b> {item._id}</span>
+            <span><b>Delivery:</b> {item.isDelivered ? <span style={{ backgroundColor: 'rgb(12, 163, 12)', color: '#FFF', padding: '4px'}}>Delivered</span> : <span style={{ backgroundColor: '#555', color: '#FFF', padding: '4px' }}>Preparing...</span>}</span>
+            
             </div>
           </div>
         </div>

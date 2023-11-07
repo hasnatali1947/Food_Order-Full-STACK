@@ -5,7 +5,6 @@ import { useState } from 'react'
 import "../app/styles/admin_Panel.css"
 import { dustban } from '@/utility/imports'
 import { useStateContext } from '@/context/context'
-import Link from 'next/link'
 
 export default function Admin_Page() {
 
@@ -26,7 +25,6 @@ export default function Admin_Page() {
   const [isAdmin, setIsAdmin] = useState(false)
 
   const { pizzaData, setPizzaData } = useStateContext();
-
 
   useEffect(() => {
     const getLogin = localStorage.getItem("adminLogin")
@@ -115,6 +113,7 @@ export default function Admin_Page() {
         const updatePizzas = [...pizzaData]
         updatePizzas.splice(index, 1)
         setPizzaData(updatePizzas)
+        console.log("update",updatePizzas);
       } else {
         console.error("someThing went wrong in delete Api", error);
       }
@@ -143,25 +142,43 @@ export default function Admin_Page() {
 
   const logOut = () => {
     const confirmLogout = window.confirm('Are you sure you want to log out?');
-  
+
     if (confirmLogout) {
       localStorage.removeItem("adminLogin");
       window.location.href = "/Admin_Panel";
-      console.log(1);
     }
   };
-  
+
+  const ClientsDBD = () => {
+    const confirm = window.confirm('Are you sure you want to go clients Dishboard')
+    if (confirm) {
+      window.location.href = "/HomeScreen"
+    }
+  }
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const imageUrl = event.target.result;
+        setImage(imageUrl);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
 
   return (
     <>
       {isAdmin ? (
-          <div className='container'>
+        <div className='container'>
           <header>
             <nav>
               <h2>Pizza_House</h2>
-              <ul>
+              <ul className='logOut'>
                 <li onClick={logOut}>LogOut</li>
+                <li onClick={ClientsDBD}>Clients Dishboard</li>
               </ul>
             </nav>
           </header>
@@ -209,6 +226,12 @@ export default function Admin_Page() {
                 <input required value={largePrice} onChange={(e) => { setLargePrice(e.target.value) }} placeholder='large variant price' type="number" />
                 <input required value={description} onChange={(e) => { setDescription(e.target.value) }} placeholder='description' type="text" />
                 <input required value={image} onChange={(e) => { setImage(e.target.value) }} placeholder='image' type="text" />
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => handleImageUpload(e)}
+                />
+                {image && <img src={image} alt="Uploaded" />}
                 <button onClick={HandleAdding}>Add</button>
               </div>
               :
