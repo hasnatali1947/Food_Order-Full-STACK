@@ -162,4 +162,60 @@
     border-radius: 5px;
   }
   
-  
+  @media (max-width: 426px){
+    .cartHeading{
+      display: flex;
+      align-items: top;
+      height: 20vh;
+      font-size: 17px;
+      padding-bottom: 20px;
+    }
+
+    .cartItems {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      border: 2px solid rgba(237, 237, 237, 0.639);
+      padding: 12px;
+      width: 90%;
+      gap: 50px;
+      list-style-type: none;
+      margin-top: 10px;
+      border-radius: 6px;
+  }
+  }
+
+  @media (max-width: 321px){
+    .cartbackbtn {
+      position: absolute;
+      height: 3vh;
+      left: 3vh;
+      top: 4vh;
+  }
+
+  .cartPizzaImage {
+    height: 12vh;
+    width: 13vh;
+    border-radius: 10px;
+}
+    
+    .cartHeading{
+      display: flex;
+      align-items: top;
+      font-size: 14px;
+      padding-bottom: 1px;
+    }
+
+    .cartItems {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      border: 2px solid rgba(237, 237, 237, 0.639);
+      padding: 12px;
+      width: 90%;
+      gap: 15px;
+      list-style-type: none;
+      margin-top: 10px;
+      border-radius: 6px;
+  }
+  }

@@ -30,10 +30,16 @@ const Cart = () => {
     <div className="cartContainer">
       <Link href="HomeScreen" ><img className="cartbackbtn" src={leftArrow.src} alt="leftArrow" /> </Link>
       <div className="cartHeading">
+
         <h2>My Cart</h2>
+        <div>
+
+        <div>
+        </div>
         <div className="SubTotal-PayNow">
           <h2>SubTotal = {totalCartPrice}</h2>
           <Checkout subTotal={totalCartPrice} />
+        </div>
         </div>
       </div>
       <ul className="cartItemsMain">

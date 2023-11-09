@@ -35,10 +35,6 @@ const Pizza = ({ pizza }) => {
 
     return (
         <>
-        {/* ----------------------------- */}
-        
-
-      {/* ------------------------------------- */}
 
             <div className="pizzaDiv">
                 <div className="pizzaDiv2">

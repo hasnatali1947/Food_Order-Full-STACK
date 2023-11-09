@@ -5,6 +5,7 @@ import { useState } from 'react'
 import "../app/styles/admin_Panel.css"
 import { dustban } from '@/utility/imports'
 import { useStateContext } from '@/context/context'
+import Loading from '@/components/Loading'
 
 export default function Admin_Page() {
 
@@ -23,6 +24,7 @@ export default function Admin_Page() {
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
   const [isAdmin, setIsAdmin] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const { pizzaData, setPizzaData } = useStateContext();
 
@@ -73,6 +75,9 @@ export default function Admin_Page() {
       image,
     };
 
+    if (!name || !smallPrice || !mediumPrice || !largePrice || !description || !image) {
+      alert("Please fill in all the fields.");
+    }
     try {
       const response = await axios.post("http://localhost:5000/api/pizzaApiRoute/apiPizzasRoute", {
         data: pizzaData,
@@ -85,12 +90,15 @@ export default function Admin_Page() {
       setsizes(['small', 'medium', 'large']);
       setDescription('');
       setImage('');
+      handleImageUpload('')
     } catch (error) {
       console.error("Error adding pizza:", error);
     };
   };
 
   const handleDeliver = async (orderId) => {
+    setLoading(true)
+
     try {
       await axios.put(`http://localhost:5000/api/markDelivered/markDelivered/${orderId}`);
       const updatedOrderList = orderList.map((order) => {
@@ -100,6 +108,7 @@ export default function Admin_Page() {
           return order;
         }
       });
+      setLoading(false)
       setOrderList(updatedOrderList);
     } catch (error) {
       console.error("Error marking order as delivered: ", error);
@@ -113,7 +122,7 @@ export default function Admin_Page() {
         const updatePizzas = [...pizzaData]
         updatePizzas.splice(index, 1)
         setPizzaData(updatePizzas)
-        console.log("update",updatePizzas);
+        console.log("update", updatePizzas);
       } else {
         console.error("someThing went wrong in delete Api", error);
       }
@@ -191,30 +200,39 @@ export default function Admin_Page() {
               <li onClick={DisplayOrdersList}>Orders List</li>
             </ul>
             {pizzaList ?
-              <table>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Prices</th>
-                    <th>Delete</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {pizzaData.map((item, index) => {
-                    return (
-                      <tr key={index}>
-                        <td>{item.name}</td>
-                        <td>
-                          Small: {item.prices[0].small}, Medium: {item.prices[0].medium}, Large: {item.prices[0].large}
-                        </td>
-                        <td className='td'>
-                          <img onClick={() => DeleteItems(index, item._id)} className='dustban' src={dustban.src} />
-                        </td>
+              <>
+                {loading ?
+                  <div style={{marginTop: '-20vh' }}>
+                    <Loading />
+                  </div>
+                  :
+
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Prices</th>
+                        <th>Delete</th>
                       </tr>
-                    )
-                  })}
-                </tbody>
-              </table>
+                    </thead>
+                    <tbody>
+                      {pizzaData.map((item, index) => {
+                        return (
+                          <tr key={index}>
+                            <td>{item.name}</td>
+                            <td>
+                              Small: {item.prices[0].small}, Medium: {item.prices[0].medium}, Large: {item.prices[0].large}
+                            </td>
+                            <td className='td'>
+                              <img onClick={() => DeleteItems(index, item._id)} className='dustban' src={dustban.src} />
+                            </td>
+                          </tr>
+                        )
+                      })}
+                    </tbody>
+                  </table>
+                }
+              </>
               :
               ''
             }
@@ -231,7 +249,7 @@ export default function Admin_Page() {
                   accept="image/*"
                   onChange={(e) => handleImageUpload(e)}
                 />
-                {image && <img src={image} alt="Uploaded" />}
+                {image && <img style={{ height: '20vh', width: '20vh' }} src={image} alt="Uploaded" />}
                 <button onClick={HandleAdding}>Add</button>
               </div>
               :
@@ -270,6 +288,14 @@ export default function Admin_Page() {
               :
               ''
             }
+            <div>
+              {/* {loading ?
+                <div>
+                  <Loading />
+                </div>
+                : ''
+              } */}
+            </div>
           </div>
         </div>
       ) :
