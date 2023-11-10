@@ -10,6 +10,10 @@ body {
     width: 100%;
 }
 
+.mobileTable {
+    display: none;
+}
+
 nav ul li:hover {
     display: flex;
     justify-content: center;
@@ -20,6 +24,10 @@ nav ul li:hover {
     padding: 5px;
     border-radius: 3px;
     border: none;
+}
+
+nav h2{
+    text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.2);
 }
 
 .logout {
@@ -44,6 +52,9 @@ nav ul li:hover {
 
 .headingAdminPanel {
     margin-top: 5vh;
+    font-size: 36px;
+    color: rgba(3, 7, 72, 0.798);
+    text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.2);
 }
 
 .AdminPanelDiv {
@@ -151,6 +162,14 @@ tbody tr:nth-child(odd) {
     height: 3vh;
 }
 
+.dustbanDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3vh;
+    font-size: 12px;
+}
+
 .AdminLoginPage {
     display: flex;
     flex-direction: column;
@@ -200,4 +219,138 @@ tbody tr:nth-child(odd) {
     border: none;
     cursor: pointer;
     transition: 0.3s ease-in-out;
+}
+
+@media (max-width: 1225px) {
+
+    .disktopTable {
+        display: none;
+    }
+
+    .mobileTable {
+        width: 100%;
+        overflow-x: auto;
+        display: flex;
+        justify-content: center;
+        border-collapse: collapse;
+        font-size: 14px;
+    }
+
+    .pizzaListTbody {
+        font-size: 12px;
+    }
+
+    .mobTbody td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .mobTbody tr {
+        display: block;
+        margin-bottom: 12px;
+        background-color: white;
+    }
+
+    .mobTbody tr:nth-child(odd) {
+        background-color: #f9f9f9;
+    }
+
+    .deliverBtn {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 769px) {
+
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        width: 95%;
+        font-size: 12px;
+        align-items: center;
+    }
+
+    nav ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        list-style-type: none;
+    }
+
+    .headingAdminPanel {
+        font-size: 26px;
+    }
+
+    .adminPanel_header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+        height: 7vh;
+        list-style-type: none;
+        width: 100%;
+        color: white;
+        letter-spacing: 0.5px;
+        font-size: 14px;
+        background-color: rgba(3, 7, 72, 0.798);
+    }
+
+    .inputs button {
+        padding: 5px;
+        width: 11vh;
+        cursor: pointer;
+        margin-top: 12px;
+        border: none;
+        background-color: rgba(90, 204, 52, 0.961);
+        color: white;
+        border-radius: 5px;
+        letter-spacing: 1px;
+    }
+
+    .mobileTable {
+        width: 100%;
+        overflow-x: auto;
+        display: flex;
+        justify-content: center;
+        border-collapse: collapse;
+        font-size: 14px;
+    }
+
+    .pizzaListTbody {
+        font-size: 12px;
+    }
+
+    .mobTbody td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .mobTbody tr {
+        display: block;
+        margin-bottom: 12px;
+        background-color: white;
+    }
+
+    .mobTbody tr:nth-child(odd) {
+        background-color: #f9f9f9;
+    }
+
+    .deliverBtn {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .dustbanDiv {
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 60px;
+        font-size: 10px;
+    }
 }

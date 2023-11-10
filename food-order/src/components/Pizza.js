@@ -46,7 +46,9 @@ const Pizza = ({ pizza }) => {
                         <div className="SizesCategory">
                             <div className="sizes">
                                 <span> <b>Sizes</b></span>
-                                <select onChange={(e) => setSelectedSize(e.target.value)}>
+                                <select onChange={(e) => setSelectedSize(e.target.value)}
+                                className="small-options"
+                                >
                                     {pizza.sizes.map((size, sizeIndex) => (
                                         <option value={size} key={sizeIndex}>
                                             {size}
@@ -55,7 +57,9 @@ const Pizza = ({ pizza }) => {
                                 </select>
 
                                 <span> <b>Category</b> </span>
-                                <select onChange={(e) => setSelectedCategory(e.target.value)}>
+                                <select onChange={(e) => setSelectedCategory(e.target.value)} 
+                                className="small-options"
+                                >
                                     {pizza.category.map((size, sizeIndex) => (
                                         <option value={size} key={sizeIndex}>
                                             {size}
@@ -66,7 +70,9 @@ const Pizza = ({ pizza }) => {
                         </div>
                         <div className="quantity">
                             <span> <b>Quantity</b></span>
-                            <select onChange={(e) => setQuantity(parseInt(e.target.value))}>
+                            <select onChange={(e) => setQuantity(parseInt(e.target.value))}
+                            className="small-options"
+                            >
                                 {[...Array(10).keys()].map((i) => (
                                     <option value={i + 1} key={i}>
                                         {i + 1}
@@ -76,7 +82,6 @@ const Pizza = ({ pizza }) => {
                         </div>
                     </div>
                     <div className="priceBtnDiv">
-
                         <span><b>Price: {pizza.prices[0][selectedSize] * Quantity} ./Rs</b></span>
                         <button onClick={() => AddToCart(pizza)} >Add To Cart</button>
                     </div>

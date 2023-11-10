@@ -4,6 +4,7 @@ import React from "react";
 import { leftArrow, dustban } from "@/utility/imports";
 import { useStateContext } from "../context/context";
 import Checkout from "@/components/PayNow";
+{/* <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet"></link> */}
 
 const Cart = () => {
   const { cart, setCart, removeFromCart } = useStateContext();
@@ -37,7 +38,7 @@ const Cart = () => {
         <div>
         </div>
         <div className="SubTotal-PayNow">
-          <h2>SubTotal = {totalCartPrice}</h2>
+          <h2>SubTotal: {totalCartPrice}</h2>
           <Checkout subTotal={totalCartPrice} />
         </div>
         </div>
@@ -58,7 +59,7 @@ const Cart = () => {
                 Category: {selectedPizza.category}
               </li>
               <li className="cartPrices">
-                Prices = {selectedPizza.Quantity} * {selectedPizza.prices[0][selectedPizza.size]} = {selectedPizza.price}
+                Prices: {selectedPizza.Quantity} * {selectedPizza.prices[0][selectedPizza.size]} = {selectedPizza.price}
               </li>
               <li className="Cartquantitymain">
                 Quantity:
@@ -81,4 +82,3 @@ const Cart = () => {
 };
 
 export default Cart;
-

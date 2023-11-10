@@ -202,11 +202,10 @@ export default function Admin_Page() {
             {pizzaList ?
               <>
                 {loading ?
-                  <div style={{marginTop: '-20vh' }}>
+                  <div style={{ marginTop: '-20vh' }}>
                     <Loading />
                   </div>
                   :
-
                   <table>
                     <thead>
                       <tr>
@@ -215,7 +214,7 @@ export default function Admin_Page() {
                         <th>Delete</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody className='pizzaListTbody'>
                       {pizzaData.map((item, index) => {
                         return (
                           <tr key={index}>
@@ -223,7 +222,7 @@ export default function Admin_Page() {
                             <td>
                               Small: {item.prices[0].small}, Medium: {item.prices[0].medium}, Large: {item.prices[0].large}
                             </td>
-                            <td className='td'>
+                            <td className='dustbanDiv'>
                               <img onClick={() => DeleteItems(index, item._id)} className='dustban' src={dustban.src} />
                             </td>
                           </tr>
@@ -257,45 +256,67 @@ export default function Admin_Page() {
             }
 
             {displayOrdersList ?
-              <table>
-                <thead>
-                  <tr>
-                    <th>Order Id</th>
-                    <th>Email</th>
-                    <th>User Id</th>
-                    <th>Amount</th>
-                    <th>Data</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {orderList.map((item, index) => (
-                    <tr key={index}>
-                      <td>{item.transactionId}</td>
-                      <td>{item.email}</td>
-                      <td>{item._id}</td>
-                      <td>{item.orderAmount}</td>
-                      <td>{item.updatedAt.substring(0, 10)}</td>
-                      <td>{item.isDelivered ? (
-                        <b style={{ color: ' rgba(3, 7, 72, 0.798)' }}>Delivered</b>
-                      ) : (
-                        <button className='deliverBtn' onClick={() => handleDeliver(item._id)}>Deliver</button>
-                      )}</td>
+              <>
+                <table className='disktopTable'>
+                  <thead>
+                    <tr>
+                      <th>Order Id</th>
+                      <th>Email</th>
+                      <th>User Id</th>
+                      <th>Amount</th>
+                      <th>Data</th>
+                      <th>Status</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {orderList.map((item, index) => (
+                      <tr key={index}>
+                        <td>{item.transactionId}</td>
+                        <td>{item.email}</td>
+                        <td>{item._id}</td>
+                        <td>{item.orderAmount}</td>
+                        <td>{item.updatedAt.substring(0, 10)}</td>
+                        <td>{item.isDelivered ? (
+                          <b style={{ color: 'rgba(3, 7, 72, 0.798)' }}>Delivered</b>
+                        ) : (
+                          <button className='deliverBtn' onClick={() => handleDeliver(item._id)}>Deliver</button>
+                        )}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <table className='mobileTable'>
+                  <thead>
+                    {/* <tr>
+                      <th>Order Id</th>
+                      <th>Email</th>
+                      <th>User Id</th>
+                      <th>Amount</th>
+                      <th>Data</th>
+                      <th>Status</th>
+                    </tr> */}
+                  </thead>
+                  <tbody className='mobTbody'>
+                    {orderList.map((item, index) => (
+                      <tr key={index}>
+                        <td> <b>Order_Id: </b> {item.transactionId}</td>
+                        <td> <b>Email: </b> {item.email}</td>
+                        <td> <b>User_Id: </b> {item._id}</td>
+                        <td> <b>Amount: </b>{item.orderAmount}</td>
+                        <td> <b>Data: </b>{item.updatedAt.substring(0, 10)}</td>
+                        <td> <b>Status: </b>{item.isDelivered ? (
+                          <b style={{ color: 'rgba(3, 7, 72, 0.798)' }}>Delivered</b>
+                        ) : (
+                          <button className='deliverBtn' onClick={() => handleDeliver(item._id)}>Deliver</button>
+                        )}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </>
               :
               ''
             }
-            <div>
-              {/* {loading ?
-                <div>
-                  <Loading />
-                </div>
-                : ''
-              } */}
-            </div>
           </div>
         </div>
       ) :
