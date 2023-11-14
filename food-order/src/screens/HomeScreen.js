@@ -5,15 +5,14 @@ import Link from "next/link";
 import "../app/styles/homePage.css"
 import Loading from "@/components/Loading";
 import { useEffect, useState } from "react";
-import { dropDown } from "@/utility/imports";
-import { image1, image2, image3, image4 } from "@/utility/imports";
+import { image1, image2, image3, image4, dropDown, mobMenu } from "@/utility/imports";
 import Slider from "@/components/slider";
 
 const HomeScreen = () => {
   const { pizzaData, cart } = useStateContext();
   const [userData, setUserData] = useState(null);
   const [isOpen, setIsopen] = useState(false)
-
+  const [mobMenuDisplay, setmobMenuDisplay] = useState(false)
 
   const data = [
     image1.src, image2.src, image3.src, image4.src
@@ -28,6 +27,7 @@ const HomeScreen = () => {
     if (confirmLogOut) {
       localStorage.removeItem("userData");
       localStorage.removeItem("cartData");
+      localStorage.removeItem("adminLogin");
       window.location.href = "/login";
     }
   };
@@ -45,6 +45,14 @@ const HomeScreen = () => {
     );
   }
 
+  const HandlemobMenu = () => {
+    setmobMenuDisplay(!mobMenuDisplay)
+  }
+
+  const ExitMobMenu = () => {
+    setmobMenuDisplay(false)
+  }
+
   const buttonClass = isOpen ? 'dropbtn' : 'notDrop';
   const DropDownIcon = isOpen ? 'openDropDownIcon' : 'NotopenDropDownIcon';
 
@@ -53,6 +61,7 @@ const HomeScreen = () => {
       <header>
         <nav>
           <h2>Pizza_House</h2>
+          <img className='mobMenu' onClick={HandlemobMenu} src={mobMenu.src} alt="mobMenu" />
           <ul>
             <a href="/Admin_Panel"><li className="AdminPanel-onNav">AdminPanel</li></a>
             <div class="dropdown">
@@ -81,12 +90,29 @@ const HomeScreen = () => {
               </div>
             </Link>
           </ul>
+          {/* ========================================== */}
+
+          {mobMenuDisplay ?
+
+            <ul className="mobMenuOpen">
+              <li className='X' onClick={ExitMobMenu}>+</li>
+              <a href="/Admin_Panel"><li className="AdminPanel-onNav">Go To AdminPanel</li></a>
+              <Link href="/myorder">My Orders</Link>
+              <Link href="/cart">
+                <div className="cartandCountDiv">
+                  <li className="AdminPanel-onNav">Cart</li>
+                  <span className="cartsCount">{cart.length}</span>
+                </div>
+              </Link>
+              <a onClick={logOut}>LogOut</a>
+            </ul>
+            : ""}
         </nav>
       </header>
 
       <div className="homePageContainer">
 
-          <Slider slidess={data} />
+        <Slider slidess={data} />
 
         <div className="pizzaContainer" id="pizzaContainer">
           {pizzaData.map((pizza, index) => (

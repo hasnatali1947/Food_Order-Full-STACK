@@ -3,9 +3,10 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import "../app/styles/admin_Panel.css"
-import { dustban } from '@/utility/imports'
+import { dustban, leftArrow, mobMenu } from '@/utility/imports'
 import { useStateContext } from '@/context/context'
 import Loading from '@/components/Loading'
+import Link from 'next/link'
 
 export default function Admin_Page() {
 
@@ -25,6 +26,7 @@ export default function Admin_Page() {
   const [email, setEmail] = useState('')
   const [isAdmin, setIsAdmin] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [mobMenuDisplay, setmobMenuDisplay] = useState(false)
 
   const { pizzaData, setPizzaData } = useStateContext();
 
@@ -78,6 +80,7 @@ export default function Admin_Page() {
     if (!name || !smallPrice || !mediumPrice || !largePrice || !description || !image) {
       alert("Please fill in all the fields.");
     }
+    
     try {
       const response = await axios.post("http://localhost:5000/api/pizzaApiRoute/apiPizzasRoute", {
         data: pizzaData,
@@ -161,6 +164,7 @@ export default function Admin_Page() {
   const ClientsDBD = () => {
     const confirm = window.confirm('Are you sure you want to go clients Dishboard')
     if (confirm) {
+      localStorage.removeItem("adminLogin");
       window.location.href = "/HomeScreen"
     }
   }
@@ -177,6 +181,13 @@ export default function Admin_Page() {
     }
   };
 
+  const HandlemobMenu = () => {
+    setmobMenuDisplay(!mobMenuDisplay)
+  };
+
+  const ExitMobMenu = () => {
+    setmobMenuDisplay(false)
+  }
 
   return (
     <>
@@ -185,10 +196,18 @@ export default function Admin_Page() {
           <header>
             <nav>
               <h2>Pizza_House</h2>
+              <img className='mobMenu' onClick={HandlemobMenu} src={mobMenu.src} alt="mobMenu" />
               <ul className='logOut'>
                 <li onClick={logOut}>LogOut</li>
                 <li onClick={ClientsDBD}>Clients Dishboard</li>
               </ul>
+              {mobMenuDisplay ?
+                <ul className='mobLogOut'>
+                  <li className='X' onClick={ExitMobMenu}>+</li>
+                  <li className='moblogClint' onClick={logOut}>LogOut</li>
+                  <li className='moblogClint' onClick={ClientsDBD}>Clients Dishboard</li>
+                </ul>
+                : ""}
             </nav>
           </header>
 
@@ -286,16 +305,6 @@ export default function Admin_Page() {
                   </tbody>
                 </table>
                 <table className='mobileTable'>
-                  <thead>
-                    {/* <tr>
-                      <th>Order Id</th>
-                      <th>Email</th>
-                      <th>User Id</th>
-                      <th>Amount</th>
-                      <th>Data</th>
-                      <th>Status</th>
-                    </tr> */}
-                  </thead>
                   <tbody className='mobTbody'>
                     {orderList.map((item, index) => (
                       <tr key={index}>
@@ -322,6 +331,7 @@ export default function Admin_Page() {
       ) :
         <div className='AdminLoginPage'>
           <div>
+          <Link href="HomeScreen" ><img className="backArrow" src={leftArrow.src} alt="leftArrow" /> </Link>
             <h1 className='loginHeading'>Login Admin</h1>
             <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="email" />
             <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="password" />

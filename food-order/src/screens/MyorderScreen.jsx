@@ -12,8 +12,6 @@ const MyorderScreen = () => {
   const [myOrder, setMyOrder] = useState([])
   const [loading, setLoading] = useState(true)
 
-  console.log("myOrder", myOrder);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -29,14 +27,14 @@ const MyorderScreen = () => {
     fetchData();
   }, [])
 
-  if(loading){
-    return(
-      <p><Loading/></p>
+  if (loading) {
+    return (
+      <p><Loading /></p>
     )
   }
 
-  if(!myOrder || myOrder.length === 0){
-    return(
+  if (!myOrder || myOrder.length === 0) {
+    return (
       <div className="NoOrderDiv">
         <h1>No Orders</h1>
       </div>
@@ -45,6 +43,7 @@ const MyorderScreen = () => {
 
   return (
     <div className='MyOrderContainer'>
+      <Link href="HomeScreen" ><img className="backArrow" src={leftArrow.src} alt="leftArrow" /> </Link>
       <h1>My Orders</h1>
       {myOrder.map((item, index) => (
 
@@ -75,10 +74,12 @@ const MyorderScreen = () => {
           <div>
             <h2>Order Info</h2>
             <div className='OrderInfo'>
-            <span><b>Total Amount:</b> {item.orderAmount}</span>
-            <span><b>Date:</b> {item.updatedAt.substring(0, 10)}</span>
-            <span><b>Delivery:</b> {item.isDelivered ? <span style={{ backgroundColor: 'rgb(12, 163, 12)', color: '#FFF', padding: '4px'}}>Delivered</span> : <span style={{ backgroundColor: '#555', color: '#FFF', padding: '4px' }}>Preparing...</span>}</span>
-            
+              <span><b>Total Amount:</b> {item.orderAmount}</span>
+              <span><b>Date:</b> {item.updatedAt.substring(0, 10)}</span>
+              <span><b>Delivery:</b> {item.isDelivered ?
+                <span className='delivered'>Delivered</span>
+                :
+                <span className='preparing'>Preparing...</span>}</span>
             </div>
           </div>
         </div>

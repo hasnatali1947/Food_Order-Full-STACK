@@ -12,7 +12,6 @@ const Register = () => {
   const [Cpasswrod, setCpassword] = useState('')
   const [apiData, setApiData] = useState()
   
-
   const UserRegister = async (userData) => {
     try {
       const response = await axios.post("http://localhost:5000/api/user/register", userData);
