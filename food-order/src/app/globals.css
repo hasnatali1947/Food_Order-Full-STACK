@@ -40,7 +40,7 @@ body {
   background-color: rgb(242, 241, 241);
 }
 
-header{
+header {
   display: flex;
   position: fixed;
   top: 0%;
@@ -54,14 +54,14 @@ header{
   color: white;
 }
 
-nav{
+nav {
   display: flex;
   justify-content: space-between;
   width: 90%;
   align-items: center;
 }
 
-nav ul{
+nav ul {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -69,175 +69,15 @@ nav ul{
   list-style-type: none;
 }
 
-nav ul li{
+nav ul li {
   cursor: pointer;
   font-weight: 600;
   color: white;
 }
 
-/* ------------------- Login ---------------------------- */
-
-.LoginPage{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.loginBgImg {
+  position: absolute;
+  width: 100vw;
   height: 100vh;
+  image-rendering: pixelated;
 }
-
-.LoginDiv {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 50vh;
-  width: 50vh;
-  border-radius: 12px;
-  background-color: white;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.179);
-}
-
-.LoginDiv h2{
-  font-size: 28px;
-  font-weight: 800;
-  padding-top: 15px;
-}
-
-.loginInputs{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 30px;
-  gap: 20px;
-}
-
-.LoginDiv input{
-  font-size: 14px;
-  height: 5vh;
-  width: 80%;
-  border-radius: 6px;
-  border: none;
-  background-color: white;
-  padding-left: 10px;
-}
-
-.loginButtons{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 30px;
-  gap: 20px;
-}
-
-.LoginDiv button{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 8vh;
-  height: 4.5vh;
-  background-color: rgba(17, 64, 219, 0.854);
-  color: white;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s ease-in-out;
-}
-
-.LoginDiv button:hover{
-  background-color: rgba(17, 64, 219, 0.991);
-}
-
-.LoginDiv button:active{
-  background-color: rgba(17, 64, 219, 0.991);
-}
-
-.LoginDiv span{
-  display: flex;
-  font-size: 13px;
-  cursor: pointer;
-  text-decoration: underline;
-}
-
-/* ----------------------------------  Register  ---------------------------------------------------------- */
-
-.RegisterPage{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-
-.registerDiv{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 2px solid;
-  height: 55vh;
-  width: 55vh;
-  border-radius: 12px;
-  background-color: white;
-}
-
-
-.RegisterPage h2{
-  font-size: 28px;
-  font-weight: 800;
-  padding-top: 15px;
-}
-
-.registerInputs{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 30px;
-  gap: 20px;
-}
-
-.registerInputs input{
-  font-size: 14px;
-  height: 5vh;
-  width: 80%;
-  border-radius: 6px;
-  border: 1px solid gray;
-  padding-left: 10px;
-}
-
-.registerButtons{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 30px;
-  gap: 20px;
-}
-
-.registerButtons button{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 8px;
-  height: 4.5vh;
-  background-color: rgba(17, 64, 219, 0.854);
-  color: white;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s ease-in-out;
-}
-
-
-.registerButtons button:hover{
-  background-color: rgba(17, 64, 219, 0.991);
-}
-
-.registerButtons button:active{
-  background-color: rgba(17, 64, 219, 0.991);
-}
-
-.registerButtons span{
-  display: flex;
-  font-size: 13px;
-  cursor: pointer;
-  text-decoration: underline;
-};

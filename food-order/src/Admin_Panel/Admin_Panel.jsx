@@ -3,7 +3,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import "../app/styles/admin_Panel.css"
-import { dustban, leftArrow, mobMenu } from '@/utility/imports'
+import { dustban, imageLogin, leftArrow, mobMenu } from '@/utility/imports'
 import { useStateContext } from '@/context/context'
 import Loading from '@/components/Loading'
 import Link from 'next/link'
@@ -80,7 +80,7 @@ export default function Admin_Page() {
     if (!name || !smallPrice || !mediumPrice || !largePrice || !description || !image) {
       alert("Please fill in all the fields.");
     }
-    
+
     try {
       const response = await axios.post("http://localhost:5000/api/pizzaApiRoute/apiPizzasRoute", {
         data: pizzaData,
@@ -330,12 +330,15 @@ export default function Admin_Page() {
         </div>
       ) :
         <div className='AdminLoginPage'>
-          <div>
           <Link href="HomeScreen" ><img className="backArrow" src={leftArrow.src} alt="leftArrow" /> </Link>
-            <h1 className='loginHeading'>Login Admin</h1>
+          <img className='loginBgImg' src={imageLogin.src} alt="AdminLoginBackgroudImg" />
+          <h2 className='loginHeading'>Login Admin</h2>
+          <div className='adminLoginInputs'>
+            <div>
             <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="email" />
             <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="password" />
             <button onClick={AdminLogin}>Login</button>
+            </div>
           </div>
         </div>
       }

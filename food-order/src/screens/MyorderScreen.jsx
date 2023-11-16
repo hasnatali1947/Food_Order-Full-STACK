@@ -48,7 +48,6 @@ const MyorderScreen = () => {
       {myOrder.map((item, index) => (
 
         <div key={index} className="orderMainDiv">
-          <Link href="HomeScreen" ><img className="cartbackbtn" src={leftArrow.src} alt="leftArrow" /> </Link>
           <div className='ItemDiv'>
             <h2>Items</h2>
             <ul>

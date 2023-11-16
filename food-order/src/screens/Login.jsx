@@ -5,6 +5,8 @@ import React from 'react'
 import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { imageLogin } from '@/utility/imports';
+import '../app/styles/login.css'
 
 const Login = () => {
 
@@ -27,7 +29,7 @@ const Login = () => {
     if (!password) {
       alert("Please type your password");
     }
-    if(!name){
+    if (!name) {
       alert("Please type your Name")
     }
     else {
@@ -37,9 +39,9 @@ const Login = () => {
         password
       };
       const response = await UserLogin(userData);
-      console.log("check name",response);
+      console.log("check name", response);
       if (response.status === 200) {
-        localStorage.setItem("userData", JSON.stringify(userData)); 
+        localStorage.setItem("userData", JSON.stringify(userData));
         window.location.href = '/HomeScreen';
       }
       else if (response.status === 400) {
@@ -51,25 +53,28 @@ const Login = () => {
     }
   };
 
-  useEffect(()=> {
-    if( localStorage.getItem("storeData" )){
+  useEffect(() => {
+    if (localStorage.getItem("storeData")) {
       window.location.href = '/';
     }
-   
+
   }, [])
 
   return (
     <div className='LoginPage'>
+      <img className='loginBgImg' src={imageLogin.src} alt="loginBackgroudImg" />
+      <h2>LOGIN</h2>
       <div className='LoginDiv'>
-        <h2>LOGIN</h2>
         <div className='loginInputs'>
-          <input required value={name} onChange={(e) => { setName(e.target.value) }} type="text" placeholder='name' />
-          <input required value={email} onChange={(e) => { setEmail(e.target.value) }} type="email" placeholder='email' />
-          <input required value={password} onChange={(e) => { setpassword(e.target.value) }} type="password" placeholder='password' />
-        </div>
-        <div className='loginButtons'>
-          <button onClick={handleLogin}>LOGIN</button>
-          <Link href="/register"><span>Click Here To Register</span></Link>
+          <div>
+            <input required value={name} onChange={(e) => { setName(e.target.value) }} type="text" placeholder='name' />
+            <input required value={email} onChange={(e) => { setEmail(e.target.value) }} type="email" placeholder='email' />
+            <input required value={password} onChange={(e) => { setpassword(e.target.value) }} type="password" placeholder='password' />
+            <div className='loginButtons'>
+              <button onClick={handleLogin}>LOGIN</button>
+            </div>
+          </div>
+          <Link href="/register"><span style={{ color: 'white' }}>Click Here To Register</span></Link>
         </div>
       </div>
     </div>

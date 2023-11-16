@@ -3,6 +3,8 @@ import React from 'react'
 import { useState } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
+import { imageLogin } from '@/utility/imports';
+import "../app/styles/register.css"
 
 const Register = () => {
 
@@ -11,7 +13,7 @@ const Register = () => {
   const [password, setPassword] = useState('')
   const [Cpasswrod, setCpassword] = useState('')
   const [apiData, setApiData] = useState()
-  
+
   const UserRegister = async (userData) => {
     try {
       const response = await axios.post("http://localhost:5000/api/user/register", userData);
@@ -47,17 +49,20 @@ const Register = () => {
 
   return (
     <div className='RegisterPage'>
+      <img className='loginBgImg' src={imageLogin.src} alt="loginBackgroudImg" />
+      <h2>REGISTER</h2>
       <div className='registerDiv'>
-        <h2>REGISTER</h2>
         <div className='registerInputs'>
-          <input required value={name} onChange={(e) => { setName(e.target.value) }} type="text" placeholder='name' />
-          <input required value={email} onChange={(e) => { setEmail(e.target.value) }} type="email" placeholder='email' />
-          <input required value={password} onChange={(e) => { setPassword(e.target.value) }} type="password" placeholder='password' />
-          <input required value={Cpasswrod} onChange={(e) => { setCpassword(e.target.value) }} type="password" placeholder='confirm password' />
-        </div>
-        <div className='registerButtons'>
-          <button onClick={handleRagister}>REGISTER</button>
-         <Link href="/login"><span>Click Here To Login</span></Link> 
+          <div>
+            <input required value={name} onChange={(e) => { setName(e.target.value) }} type="text" placeholder='name' />
+            <input required value={email} onChange={(e) => { setEmail(e.target.value) }} type="email" placeholder='email' />
+            <input required value={password} onChange={(e) => { setPassword(e.target.value) }} type="password" placeholder='password' />
+            <input required value={Cpasswrod} onChange={(e) => { setCpassword(e.target.value) }} type="password" placeholder='confirm password' />
+            <div className='registerButtons'>
+              <button onClick={handleRagister}>REGISTER</button>
+            </div>
+          </div>
+          <Link href="/login"><span style={{ color: 'white', fontSize: '13px', textDecoration: 'underline' }}>Click Here To Login</span></Link>
         </div>
       </div>
     </div>

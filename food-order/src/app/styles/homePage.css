@@ -63,7 +63,7 @@ nav ul li:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #4caf4fe6;
+  background-color: #FFA500;
   color: white;
   height: 3vh;
   padding: 5px;
@@ -89,7 +89,7 @@ nav ul li:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #4caf4fe6;
+  background-color: #FFA500;
   color: white;
   height: 3vh;
   padding: 5px;
@@ -101,7 +101,7 @@ nav ul li:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #4caf4fe6;
+  background-color: #FFA500;
   color: white;
   height: 3vh;
   padding: 5px;
@@ -322,7 +322,7 @@ nav ul li:hover {
   justify-content: center;
   align-items: center;
   color: white;
-  background-color: rgb(12, 163, 12);
+  background-color: #FFA500;
   height: 4vh;
   padding: 8px;
   border: none;

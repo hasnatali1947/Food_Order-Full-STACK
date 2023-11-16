@@ -10,11 +10,12 @@ body {
     width: 100%;
 }
 
-.backArrow{
+.backArrow {
     position: absolute;
     left: 4%;
     top: 4.5%;
     height: 4.5vh;
+    z-index: 1;
 }
 
 .mobMenu {
@@ -33,7 +34,7 @@ nav ul li:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #4caf4fe6;
+    background-color: #FFA500;
     color: white;
     height: 3vh;
     padding: 5px;
@@ -45,11 +46,15 @@ nav h2 {
     text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.2);
 }
 
+nav h2:hover {
+    text-shadow: none;
+}
+
 .logout {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #4caf4fe6;
+    background-color: #FFA500;
     color: white;
     height: 3vh;
     padding: 5px;
@@ -121,7 +126,7 @@ nav h2 {
     cursor: pointer;
     margin-top: 12px;
     border: none;
-    background-color: rgba(90, 204, 52, 0.961);
+    background-color: #FFA500;
     color: white;
     border-radius: 5px;
     letter-spacing: 1.5px;
@@ -195,11 +200,16 @@ tbody tr:nth-child(odd) {
 }
 
 .loginHeading {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    font-size: 36px;
+    font-weight: 800;
+    padding-top: 15px;
+    letter-spacing: 2px;
+    z-index: 1;
+    color: white;
+    text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.2);
 }
 
-.AdminLoginPage div {
+.adminLoginInputs {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -207,18 +217,30 @@ tbody tr:nth-child(odd) {
     height: 50vh;
     width: 50vh;
     border-radius: 12px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0);
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.179);
+    z-index: 1;
+    gap: 20px;
+}
+
+.adminLoginInputs div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    margin-top: 30px;
+    gap: 20px;
 }
 
 .AdminLoginPage input {
-    height: 20px;
-    padding: 10px;
     font-size: 14px;
-    border-radius: 7px;
-    width: 80%;
-    margin-top: 15px;
-    border: none;
+    height: 5vh;
+    width: 100%;
+    border-radius: 6px;
+    background-color: rgba(29, 28, 28, 0.609);
+    padding-left: 10px;
+    color: white;
 }
 
 .AdminLoginPage button {
@@ -227,14 +249,23 @@ tbody tr:nth-child(odd) {
     align-items: center;
     width: 8vh;
     height: 4.5vh;
-    margin-top: 15px;
-    background-color: rgba(17, 64, 219, 0.854);
+    margin-top: 15px;  
+    background-color: #FFA500;
     color: white;
     border-radius: 8px;
     border: none;
     cursor: pointer;
     transition: 0.3s ease-in-out;
 }
+
+.AdminLoginPage button:hover {
+    background-color: #FF8C00;
+  }
+  
+  .AdminLoginPage button:active {
+    background-color: #f38703;
+  }
+  
 
 @media (max-width: 1225px) {
 
@@ -268,7 +299,7 @@ tbody tr:nth-child(odd) {
     }
 
     .mobTbody tr:nth-child(odd) {
-        background-color: #f9f9f9;
+        background-color: #dedcdc;
     }
 
     .deliverBtn {
@@ -351,7 +382,7 @@ tbody tr:nth-child(odd) {
         cursor: pointer;
         margin-top: 12px;
         border: none;
-        background-color: rgba(90, 204, 52, 0.961);
+        background-color: #FFA500;
         color: white;
         border-radius: 5px;
         letter-spacing: 1px;
@@ -383,7 +414,7 @@ tbody tr:nth-child(odd) {
     }
 
     .mobTbody tr:nth-child(odd) {
-        background-color: #f9f9f9;
+        background-color: #dedcdc;
     }
 
     .deliverBtn {
@@ -401,7 +432,23 @@ tbody tr:nth-child(odd) {
     }
 }
 
-@media (max-width: 380px) {
+@media screen and (max-width: 380px) {
+
+    .loginHeading {
+        font-size: 30px;
+        font-weight: 700;
+        padding-top: 15px;
+        letter-spacing: 2px;
+        z-index: 1;
+        color: white;
+        text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .adminLoginInputs {
+        height: 50vh;
+        width: 100%;
+    }
+
     .AdminPanelDiv {
         display: flex;
         flex-direction: column;
