@@ -17,7 +17,7 @@ const Login = () => {
 
   const UserLogin = async (userData) => {
     try {
-      const response = await axios.post("http://localhost:5000/api/user/login", userData)
+      const response = await axios.post("https://foodorder-backend.onrender.com/api/user/login", userData)
       return response;
     } catch (error) {
       console.error("Login failed", error);

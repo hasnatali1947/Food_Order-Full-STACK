@@ -39,7 +39,7 @@ export default function Admin_Page() {
 
   const AdminLogin = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/api/AdminLogin/admin_panel", { email, password });
+      const response = await axios.post("https://foodorder-backend.onrender.com/api/AdminLogin/admin_panel", { email, password });
 
       if (response.status === 200) {
         setIsAdmin(true);
@@ -55,7 +55,7 @@ export default function Admin_Page() {
 
   useEffect(() => {
     const OrderList = async () => {
-      const response = await axios.get("http://localhost:5000/api/myorder/myOrderRoute")
+      const response = await axios.get("https://foodorder-backend.onrender.com/api/myorder/myOrderRoute")
       const data = response.data
       setOrderList(data)
     }
@@ -82,7 +82,7 @@ export default function Admin_Page() {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/api/pizzaApiRoute/apiPizzasRoute", {
+      const response = await axios.post("https://foodorder-backend.onrender.com/api/pizzaApiRoute/apiPizzasRoute", {
         data: pizzaData,
       });
       setName('');
@@ -103,7 +103,7 @@ export default function Admin_Page() {
     setLoading(true)
 
     try {
-      await axios.put(`http://localhost:5000/api/markDelivered/markDelivered/${orderId}`);
+      await axios.put(`https://foodorder-backend.onrender.com/api/markDelivered/markDelivered/${orderId}`);
       const updatedOrderList = orderList.map((order) => {
         if (order._id === orderId) {
           return { ...order, isDelivered: true };
@@ -120,7 +120,7 @@ export default function Admin_Page() {
 
   const DeleteItems = async (index, pizzaId) => {
     try {
-      const response = await axios.delete(`http://localhost:5000/api/deletePizza/${pizzaId}`)
+      const response = await axios.delete(`https://foodorder-backend.onrender.com/api/deletePizza/${pizzaId}`)
       if (response.status === 200) {
         const updatePizzas = [...pizzaData]
         updatePizzas.splice(index, 1)

@@ -17,7 +17,7 @@ const Register = () => {
 
   const UserRegister = async (userData) => {
     try {
-      const response = await axios.post("http://localhost:5000/api/user/register", userData);
+      const response = await axios.post("https://foodorder-backend.onrender.com/api/user/register", userData);
       setApiData(response)
       return response
     } catch (error) {

@@ -25,7 +25,7 @@ export const StateContext = ({ children }) => {
 
     useEffect(() => {
         async function fetchPizzaData() {
-            const response = await axios.get("http://localhost:5000/api/pizzas/getallpizzas");
+            const response = await axios.get("https://foodorder-backend.onrender.com/api/pizzas/getallpizzas");
             const pizzas = response.data;
             setPizzaData(pizzas);
             console.log("fetching pizzas", pizzas);

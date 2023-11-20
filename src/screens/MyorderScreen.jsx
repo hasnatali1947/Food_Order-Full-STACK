@@ -16,7 +16,7 @@ const MyorderScreen = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/myorder/myOrderRoute")
+        const response = await axios.get("https://foodorder-backend.onrender.com/api/myorder/myOrderRoute")
         const data = response.data
         setMyOrder(data)
         setLoading(false)

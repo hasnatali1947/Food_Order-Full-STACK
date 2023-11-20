@@ -23,7 +23,7 @@ export default function Checkout({ subTotal }) {
         }, 3000);
       }
 
-      const response = await axios.post("http://localhost:5000/api/order/orderRoute", { token, subTotal, cart });
+      const response = await axios.post("https://foodorder-backend.onrender.com/api/order/orderRoute", { token, subTotal, cart });
       const data = response.data;
       setLoading(false);
       console.log("orderData:", data);
