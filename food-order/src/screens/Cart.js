@@ -1,10 +1,11 @@
+"use client"
 import Link from "next/link";
 import "../app/styles/cart.css"
 import React from "react";
 import { leftArrow, dustban } from "@/utility/imports";
 import { useStateContext } from "../context/context";
 import Checkout from "@/components/PayNow";
-{/* <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet"></link> */}
+import Image from "next/image";
 
 const Cart = () => {
   const { cart, setCart, removeFromCart } = useStateContext();
@@ -25,22 +26,20 @@ const Cart = () => {
       });
       setCart(updatedCart);
     };
-  }
+  };
 
   return (
     <div className="cartContainer">
-      <Link href="HomeScreen" ><img className="cartbackbtn" src={leftArrow.src} alt="leftArrow" /> </Link>
+
+      <Link href="HomeScreen" ><Image className="cartbackbtn" width={32} height={32} src={leftArrow.src} alt="leftArrow" /> </Link>
       <div className="cartHeading">
 
         <h2>My Cart</h2>
         <div>
-
-        <div>
-        </div>
-        <div className="SubTotal-PayNow">
-          <h2>SubTotal: {totalCartPrice}</h2>
-          <Checkout subTotal={totalCartPrice} />
-        </div>
+          <div className="SubTotal-PayNow">
+            <h2>SubTotal: {totalCartPrice}</h2>
+            <Checkout subTotal={totalCartPrice} />
+          </div>
         </div>
       </div>
       <ul className="cartItemsMain">
@@ -71,8 +70,8 @@ const Cart = () => {
               </li>
             </div>
             <div className="cartImg-cross">
-              <img className="cartPizzaImage" src={selectedPizza.image} alt="pizzaImage" />
-              <img className="cartDustban" onClick={() => removeFromCart(index)} src={dustban.src} />
+              <Image className="cartPizzaImage" height={96} width={156} src={selectedPizza.image} alt="pizzaImage" />
+              <Image className="cartDustban" height={16} width={16} onClick={() => removeFromCart(index)} src={dustban.src} alt="cartDustban" />
             </div>
           </ul>
         ))}

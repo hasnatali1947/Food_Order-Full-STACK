@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useStateContext } from "@/context/context";
+import Image from "next/image";
 
 const Pizza = ({ pizza }) => {
     const [selectedSize, setSelectedSize] = useState("small");
@@ -30,24 +31,22 @@ const Pizza = ({ pizza }) => {
                 Quantity: Quantity,
             };
             setCart([...cart, selectedPizza]);
+            localStorage.setItem('cartData', JSON.stringify([...cart, selectedPizza]));
         }
     }
 
     return (
         <>
-
             <div className="pizzaDiv">
                 <div className="pizzaDiv2">
                     <h3>{pizza.name}</h3>
-                    <img onClick={ClickPizza} className="pizzaImg" src={pizza.image} alt="pizza image" />
-
+                    <Image onClick={ClickPizza} className="pizzaImg" width={200} height={200} src={pizza.image} alt="pizza image" />
                     <div className="sizesQuantityDiv">
-
                         <div className="SizesCategory">
                             <div className="sizes">
                                 <span> <b>Sizes</b></span>
                                 <select onChange={(e) => setSelectedSize(e.target.value)}
-                                className="small-options"
+                                    className="small-options"
                                 >
                                     {pizza.sizes.map((size, sizeIndex) => (
                                         <option value={size} key={sizeIndex}>
@@ -57,8 +56,8 @@ const Pizza = ({ pizza }) => {
                                 </select>
 
                                 <span> <b>Category</b> </span>
-                                <select onChange={(e) => setSelectedCategory(e.target.value)} 
-                                className="small-options"
+                                <select onChange={(e) => setSelectedCategory(e.target.value)}
+                                    className="small-options"
                                 >
                                     {pizza.category.map((size, sizeIndex) => (
                                         <option value={size} key={sizeIndex}>
@@ -71,7 +70,7 @@ const Pizza = ({ pizza }) => {
                         <div className="quantity">
                             <span> <b>Quantity</b></span>
                             <select onChange={(e) => setQuantity(parseInt(e.target.value))}
-                            className="small-options"
+                                className="small-options"
                             >
                                 {[...Array(10).keys()].map((i) => (
                                     <option value={i + 1} key={i}>
@@ -91,7 +90,7 @@ const Pizza = ({ pizza }) => {
             <div className={`popup-pizza ${PopupPizza !== 'none' ? 'active' : ''}`}>
                 <div className="popup-pizza-div">
                     <h1>{pizza.name}</h1>
-                    <img className="Popup-pizzaImg" src={pizza.image} alt="Pizza image" />
+                    <Image className="Popup-pizzaImg" width={200} height={200} src={pizza.image} alt="Pizza image" />
                     <p>{pizza.description}</p>
                     <button className="popupClose" onClick={popupClose}>close</button>
                 </div>

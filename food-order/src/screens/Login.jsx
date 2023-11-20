@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { imageLogin } from '@/utility/imports';
 import '../app/styles/login.css'
+import Image from 'next/image';
 
 const Login = () => {
 
@@ -15,7 +16,6 @@ const Login = () => {
   const [password, setpassword] = useState();
 
   const UserLogin = async (userData) => {
-    console.log("userData", userData);
     try {
       const response = await axios.post("http://localhost:5000/api/user/login", userData)
       return response;
@@ -39,7 +39,6 @@ const Login = () => {
         password
       };
       const response = await UserLogin(userData);
-      console.log("check name", response);
       if (response.status === 200) {
         localStorage.setItem("userData", JSON.stringify(userData));
         window.location.href = '/HomeScreen';
@@ -57,12 +56,12 @@ const Login = () => {
     if (localStorage.getItem("storeData")) {
       window.location.href = '/';
     }
-
   }, [])
 
   return (
     <div className='LoginPage'>
-      <img className='loginBgImg' src={imageLogin.src} alt="loginBackgroudImg" />
+
+      <Image className='loginBgImg' width={800} height={800} src={imageLogin.src} alt="loginBackgroudImg" />
       <h2>LOGIN</h2>
       <div className='LoginDiv'>
         <div className='loginInputs'>

@@ -313,7 +313,6 @@ tbody tr:nth-child(odd) {
     .mobMenu {
         display: flex;
         font-size: 14px;
-        height: 18px;
     }
 
     nav {

@@ -5,8 +5,8 @@ import { useState } from 'react'
 import "../app/styles/admin_Panel.css"
 import { dustban, imageLogin, leftArrow, mobMenu } from '@/utility/imports'
 import { useStateContext } from '@/context/context'
-import Loading from '@/components/Loading'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Admin_Page() {
 
@@ -35,7 +35,7 @@ export default function Admin_Page() {
     if (getLogin === 'true') {
       setIsAdmin(true)
     }
-  })
+  },[])
 
   const AdminLogin = async () => {
     try {
@@ -196,7 +196,7 @@ export default function Admin_Page() {
           <header>
             <nav>
               <h2>Pizza_House</h2>
-              <img className='mobMenu' onClick={HandlemobMenu} src={mobMenu.src} alt="mobMenu" />
+              <Image className='mobMenu' height={18} width={18} onClick={HandlemobMenu} src={mobMenu.src} alt="mobMenu" />
               <ul className='logOut'>
                 <li onClick={logOut}>LogOut</li>
                 <li onClick={ClientsDBD}>Clients Dishboard</li>
@@ -221,8 +221,8 @@ export default function Admin_Page() {
             {pizzaList ?
               <>
                 {loading ?
-                  <div style={{ marginTop: '-20vh' }}>
-                    <Loading />
+                  <div className='loadingDiv'>
+                    <p>Loading</p>
                   </div>
                   :
                   <table>
@@ -242,7 +242,7 @@ export default function Admin_Page() {
                               Small: {item.prices[0].small}, Medium: {item.prices[0].medium}, Large: {item.prices[0].large}
                             </td>
                             <td className='dustbanDiv'>
-                              <img onClick={() => DeleteItems(index, item._id)} className='dustban' src={dustban.src} />
+                              <Image onClick={() => DeleteItems(index, item._id)} className='dustban' height={24} width={24} src={dustban.src} alt="DeleteItems" />
                             </td>
                           </tr>
                         )
@@ -267,7 +267,7 @@ export default function Admin_Page() {
                   accept="image/*"
                   onChange={(e) => handleImageUpload(e)}
                 />
-                {image && <img style={{ height: '20vh', width: '20vh' }} src={image} alt="Uploaded" />}
+                {image && <Image height={200} width={200} src={image} alt="Uploaded" />}
                 <button onClick={HandleAdding}>Add</button>
               </div>
               :
@@ -330,14 +330,14 @@ export default function Admin_Page() {
         </div>
       ) :
         <div className='AdminLoginPage'>
-          <Link href="HomeScreen" ><img className="backArrow" src={leftArrow.src} alt="leftArrow" /> </Link>
-          <img className='loginBgImg' src={imageLogin.src} alt="AdminLoginBackgroudImg" />
+          <Link href="HomeScreen" ><Image className="backArrow" height={36} width={36} src={leftArrow.src} alt="leftArrow" /> </Link>
+          <Image className='loginBgImg' height={800} width={800} src={imageLogin.src} alt="AdminLoginBackgroudImg" />
           <h2 className='loginHeading'>Login Admin</h2>
           <div className='adminLoginInputs'>
             <div>
-            <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="email" />
-            <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="password" />
-            <button onClick={AdminLogin}>Login</button>
+              <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="email" />
+              <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="password" />
+              <button onClick={AdminLogin}>Login</button>
             </div>
           </div>
         </div>

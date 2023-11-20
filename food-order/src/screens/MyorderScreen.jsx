@@ -1,11 +1,12 @@
 "use client"
-import Loading from '@/components/Loading'
+
 import axios from 'axios'
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { leftArrow } from '@/utility/imports'
 import "../app/styles/myOrder.css"
 import Link from 'next/link'
+import Image from 'next/image'
 
 const MyorderScreen = () => {
 
@@ -19,7 +20,6 @@ const MyorderScreen = () => {
         const data = response.data
         setMyOrder(data)
         setLoading(false)
-        console.log("getdata", data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -29,7 +29,9 @@ const MyorderScreen = () => {
 
   if (loading) {
     return (
-      <p><Loading /></p>
+      <div className='loadingDiv'>
+        <p>Loading...</p>
+      </div>
     )
   }
 
@@ -43,10 +45,10 @@ const MyorderScreen = () => {
 
   return (
     <div className='MyOrderContainer'>
-      <Link href="HomeScreen" ><img className="backArrow" src={leftArrow.src} alt="leftArrow" /> </Link>
+
+      <Link href="HomeScreen" ><Image className="backArrow" height={36} width={36} src={leftArrow.src} alt="leftArrow" /> </Link>
       <h1>My Orders</h1>
       {myOrder.map((item, index) => (
-
         <div key={index} className="orderMainDiv">
           <div className='ItemDiv'>
             <h2>Items</h2>
@@ -82,7 +84,6 @@ const MyorderScreen = () => {
             </div>
           </div>
         </div>
-
       ))}
     </div>
   )

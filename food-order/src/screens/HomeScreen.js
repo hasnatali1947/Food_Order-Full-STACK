@@ -3,10 +3,10 @@ import Pizza from "../components/Pizza";
 import { useStateContext } from "../context/context";
 import Link from "next/link";
 import "../app/styles/homePage.css"
-import Loading from "@/components/Loading";
 import { useEffect, useState } from "react";
 import { image1, image2, image3, image4, dropDown, mobMenu } from "@/utility/imports";
 import Slider from "@/components/slider";
+import Image from "next/image";
 
 const HomeScreen = () => {
   const { pizzaData, cart } = useStateContext();
@@ -39,8 +39,8 @@ const HomeScreen = () => {
 
   if (!pizzaData || pizzaData.length === 0) {
     return (
-      <div>
-        <p> <Loading /></p>
+      <div className="loadingDiv">
+        <p>Loading...</p>
       </div>
     );
   }
@@ -61,14 +61,14 @@ const HomeScreen = () => {
       <header>
         <nav>
           <h2>Pizza_House</h2>
-          <img className='mobMenu' onClick={HandlemobMenu} src={mobMenu.src} alt="mobMenu" />
+          <Image className='mobMenu' width={18} height={18} onClick={HandlemobMenu} src={mobMenu.src} alt="mobMenu" />
           <ul>
             <a href="/Admin_Panel"><li className="AdminPanel-onNav">AdminPanel</li></a>
             <div class="dropdown">
               {userData ? (
                 <ul>
                   <li className={buttonClass} onClick={DropDown}>{userData.name}</li>
-                  <li><img className={DropDownIcon} src={dropDown.src} /> </li>
+                  <li><Image className={DropDownIcon} width={18} height={18} src={dropDown.src} alt="DropDown" /> </li>
                 </ul>
               ) : (
                 <Link href="/login">
@@ -90,10 +90,8 @@ const HomeScreen = () => {
               </div>
             </Link>
           </ul>
-          {/* ========================================== */}
 
           {mobMenuDisplay ?
-
             <ul className="mobMenuOpen">
               <li className='X' onClick={ExitMobMenu}>+</li>
               <a href="/Admin_Panel"><li className="AdminPanel-onNav">Go To AdminPanel</li></a>
@@ -113,7 +111,6 @@ const HomeScreen = () => {
       <div className="homePageContainer">
 
         <Slider slidess={data} />
-
         <div className="pizzaContainer" id="pizzaContainer">
           {pizzaData.map((pizza, index) => (
             <div className="displayPizzas" key={index}>

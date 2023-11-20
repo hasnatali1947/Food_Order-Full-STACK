@@ -5,6 +5,7 @@ import Link from 'next/link';
 import axios from 'axios';
 import { imageLogin } from '@/utility/imports';
 import "../app/styles/register.css"
+import Image from 'next/image';
 
 const Register = () => {
 
@@ -17,9 +18,7 @@ const Register = () => {
   const UserRegister = async (userData) => {
     try {
       const response = await axios.post("http://localhost:5000/api/user/register", userData);
-      console.log("User data Api", response);
       setApiData(response)
-      console.log("ApiData:", apiData);
       return response
     } catch (error) {
       console.error("Registration Failed", error);
@@ -39,7 +38,6 @@ const Register = () => {
         email,
         password
       }
-      console.log("user :", userData);
       const response = await UserRegister(userData);
       if (response.status === 201) {
         localStorage.setItem("userData", JSON.stringify(userData));
@@ -49,7 +47,7 @@ const Register = () => {
 
   return (
     <div className='RegisterPage'>
-      <img className='loginBgImg' src={imageLogin.src} alt="loginBackgroudImg" />
+      <Image className='loginBgImg' width={800} height={800} src={imageLogin.src} alt="loginBackgroudImg" />
       <h2>REGISTER</h2>
       <div className='registerDiv'>
         <div className='registerInputs'>
