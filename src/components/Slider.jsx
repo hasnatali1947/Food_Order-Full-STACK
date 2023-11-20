@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useCallback } from "react";
 import { useEffect, useState } from "react";
 import "../app/styles/homePage.css"
 
@@ -15,13 +16,13 @@ export default function Slider({ slidess }) {
     }, 200);
   };
 
-  const goRight = () => {
+  const goRight = useCallback(() => {
     setTimeout(() => {
       setCurrentImageIndex((prevIndex) =>
         prevIndex === slidess.length - 1 ? 0 : prevIndex + 1
       );
     }, 200);
-  };
+  }, [slidess.length]);
 
   useEffect(() => {
     const interval = setInterval(goRight, 4000);

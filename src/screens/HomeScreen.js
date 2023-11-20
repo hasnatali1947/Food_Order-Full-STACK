@@ -5,7 +5,7 @@ import Link from "next/link";
 import "../app/styles/homePage.css"
 import { useEffect, useState } from "react";
 import { image1, image2, image3, image4, dropDown, mobMenu } from "@/utility/imports";
-import Slider from "@/components/slider";
+import Slider from "../components/slider";
 import Image from "next/image";
 
 const HomeScreen = () => {
