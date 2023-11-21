@@ -227,8 +227,8 @@ tbody tr:nth-child(odd) {
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: start;
-    justify-content: start;
+    align-items: flex-start;
+    justify-content: flex-start;
     margin-top: 30px;
     gap: 20px;
 }
@@ -333,7 +333,7 @@ tbody tr:nth-child(odd) {
         width: 100vw;
         display: flex;
         flex-direction: column;
-        justify-content: start;
+        justify-content: flex-start;
         align-items: baseline;
         top: 0;
         left: 0;

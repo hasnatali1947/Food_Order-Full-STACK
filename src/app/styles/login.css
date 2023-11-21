@@ -51,8 +51,8 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: start;
-    justify-content: start;
+    align-items: flex-start;
+    justify-content: flex-start;
     margin-top: 30px;
     gap: 20px;
   }
@@ -125,8 +125,8 @@
       width: 80%;
       display: flex;
       flex-direction: column;
-      align-items: start;
-      justify-content: start;
+      align-items: flex-start;
+      justify-content: flex-start;
       margin-top: 30px;
       gap: 20px;
     }
