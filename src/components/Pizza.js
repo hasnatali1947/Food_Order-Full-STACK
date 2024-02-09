@@ -3,6 +3,7 @@ import { useStateContext } from "@/context/context";
 import Image from "next/image";
 
 const Pizza = ({ pizza }) => {
+
     const [selectedSize, setSelectedSize] = useState("small");
     const [selectedCategory, setSelectedCategory] = useState("spicy");
     const [Quantity, setQuantity] = useState(1);

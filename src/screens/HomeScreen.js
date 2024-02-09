@@ -4,7 +4,7 @@ import { useStateContext } from "../context/context";
 import Link from "next/link";
 import "../app/styles/homePage.css"
 import { useEffect, useState } from "react";
-import { image1, image2, image3, image4, dropDown, mobMenu } from "@/utility/imports";
+import { image1, image2, image3, image4, dropDown, mobMenu, PagenationArrow } from "@/utility/imports";
 import Slider from "../components/slider";
 import Image from "next/image";
 
@@ -13,6 +13,19 @@ const HomeScreen = () => {
   const [userData, setUserData] = useState(null);
   const [isOpen, setIsopen] = useState(false)
   const [mobMenuDisplay, setmobMenuDisplay] = useState(false)
+  const [filterPizza, setFilterPizza] = useState("")
+  const [currentPage, setCurrentPage] = useState(1)
+  const [pizzaPerPage] = useState(6)
+
+  const filteredPizza = pizzaData.filter(pizzas =>
+    pizzas.name.toLowerCase().includes(filterPizza.toLowerCase())
+  );
+
+  const indexOfLastPizza = currentPage * pizzaPerPage;
+  const indexofFirstPizza = indexOfLastPizza - pizzaPerPage
+  const currentPizzas = filteredPizza.slice(indexofFirstPizza, indexOfLastPizza)
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const data = [
     image1.src, image2.src, image3.src, image4.src
@@ -55,6 +68,8 @@ const HomeScreen = () => {
 
   const buttonClass = isOpen ? 'dropbtn' : 'notDrop';
   const DropDownIcon = isOpen ? 'openDropDownIcon' : 'NotopenDropDownIcon';
+
+
 
   return (
     <div>
@@ -111,12 +126,45 @@ const HomeScreen = () => {
       <div className="homePageContainer">
 
         <Slider slidess={data} />
-        <div className="pizzaContainer" id="pizzaContainer">
-          {pizzaData.map((pizza, index) => (
-            <div className="displayPizzas" key={index}>
-              <Pizza pizza={pizza} />
-            </div>
+        <input className="FilterInput" onChange={(e) => { setFilterPizza(e.target.value) }} placeholder="searchPizzas" />
+
+        {filterPizza.length === pizzaData.name ?
+          <div>
+            {displayPizzas}
+          </div>
+          :
+          <div className="pizzaContainer" id="pizzaContainer">
+
+            {currentPizzas.map((pizza, index) => (
+              <div className="displayPizzas" key={index}>
+                <Pizza pizza={pizza} />
+              </div>
+            ))}
+
+          </div>
+        }
+      </div>
+      <div className="pagenationDiv">
+        <div className="pagenationcontainer">
+          <img className="pagenationLeftArrow" onClick={() => {
+            if (currentPage > 1) {
+              paginate(currentPage - 1);
+            }
+          }} src={PagenationArrow.src} />
+          {Array.from({ length: Math.ceil(filteredPizza.length / pizzaPerPage) }, (_, i) => (
+            <p
+              className={`pagenationPgNo ${currentPage === i + 1 ? 'activePage' : ''}`}
+              key={i}
+              onClick={() => paginate(i + 1)}
+            >
+              {i + 1}
+            </p>
           ))}
+          <img className="pagenationRightArrow" onClick={() => {
+            if (currentPage < Math.ceil(filteredPizza.length / pizzaPerPage)) {
+              paginate(currentPage + 1);
+            }
+          }} src={PagenationArrow.src} />
         </div>
       </div>
     </div>

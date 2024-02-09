@@ -7,5 +7,6 @@ import image2 from "../app/assets/images/image2.jpg"
 import image3 from "../app/assets/images/image3.jpg"
 import image4 from "../app/assets/images/image4.jpg"
 import imageLogin from "../app/assets/images/imageLogin.jpg"
+import PagenationArrow from "../app/assets/icons/arrow-left-fill.svg"
 
-export { leftArrow, dustban, dropDown, mobMenu, image1, image2, image3, image4, imageLogin };
+export { leftArrow, dustban, dropDown, mobMenu, image1, image2, image3, image4, imageLogin, PagenationArrow };

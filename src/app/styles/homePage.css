@@ -201,6 +201,15 @@ nav ul li:hover {
   color: white;
 }
 
+.FilterInput{
+  margin-top: 20px;
+  padding: 4px 12px;
+  width: 15%;
+  border-radius: 5px;
+  border: 2px solid #FFA500;
+
+}
+
 .left:hover,
 .right:hover {
   opacity: 1;
@@ -263,7 +272,6 @@ nav ul li:hover {
 }
 
 .pizzaDiv2 {
-  height: 100%;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -419,10 +427,54 @@ nav ul li:hover {
 }
 
 .slider {
-  border: 2px solid red;
   margin-top: 10vh;
   height: 30vh;
   width: 30vh;
+}
+
+.pagenationDiv{
+  margin-top: 120px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 0px 110px;
+}
+
+.pagenationcontainer{
+  /* border: 2px solid #6663638c; */
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.139);
+}
+
+.pagenationLeftArrow{
+  cursor: pointer;
+}
+
+.pagenationRightArrow{
+  rotate: 180deg;
+  cursor: pointer;
+}
+
+.pagenationPgNo{
+  /* border: 2px solid; */
+  height: 20px;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.activePage{
+  background-color: #FFA500;
+  color: white;
+  border: 2px solid #FFA500;
+  border-radius: 4px;
 }
 
 @media (max-width: 768px) {
@@ -489,7 +541,6 @@ nav ul li:hover {
   }
 
   .pizzaDiv2 {
-    height: 100%;
     background-color: white;
     display: flex;
     flex-direction: column;
