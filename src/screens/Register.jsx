@@ -6,6 +6,8 @@ import axios from 'axios';
 import { imageLogin } from '@/utility/imports';
 import "../app/styles/register.css"
 import Image from 'next/image';
+import { toast } from "react-toastify";
+import * as Yup from 'yup';
 
 const Register = () => {
 
@@ -14,6 +16,16 @@ const Register = () => {
   const [password, setPassword] = useState('')
   const [Cpasswrod, setCpassword] = useState('')
   const [apiData, setApiData] = useState()
+
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().required('Name is required'),
+    email: Yup.string()
+      .required('Email is required')
+      .email('Invalid email')
+      .test('contains-at', 'Email must contain "@"', value => value && value.includes('@')),
+    password: Yup.string().required('Password is required'),
+    Cpasswrod: Yup.string().required('Confirm Password is required'),
+  });
 
   const UserRegister = async (userData) => {
     try {
@@ -26,21 +38,32 @@ const Register = () => {
   };
 
   const handleRagister = async () => {
-    if (password !== Cpasswrod) {
-      alert("passwords not matched")
-    }
-    else if (!name) {
-      alert("please type name")
-    }
-    else {
-      const userData = {
-        name,
-        email,
-        password
+
+    try {
+      await validationSchema.validate({ name, email, password, Cpasswrod }, { abortEarly: false });
+
+      if (password !== Cpasswrod) {
+        toast.error("passwords not matched")
       }
-      const response = await UserRegister(userData);
-      if (response.status === 201) {
-        localStorage.setItem("userData", JSON.stringify(userData));
+      else if (!name) {
+        toast.error("please type name")
+      }
+      else {
+        const userData = {
+          name,
+          email,
+          password
+        }
+        const response = await UserRegister(userData);
+        if (response.status === 201) {
+          localStorage.setItem("userData", JSON.stringify(userData));
+        }
+      }
+    } catch (error) {
+      if (error.name === 'ValidationError') {
+        error.inner.forEach(err => {
+          toast.error(err.message);
+        });
       }
     }
   }

@@ -21,6 +21,10 @@ const HomeScreen = () => {
     pizzas.name.toLowerCase().includes(filterPizza.toLowerCase())
   );
 
+  console.log("userData : ", userData)
+  console.log("pizzaData : ", pizzaData)
+  console.log("cart : ", cart)
+
   const indexOfLastPizza = currentPage * pizzaPerPage;
   const indexofFirstPizza = indexOfLastPizza - pizzaPerPage
   const currentPizzas = filteredPizza.slice(indexofFirstPizza, indexOfLastPizza)
@@ -68,8 +72,6 @@ const HomeScreen = () => {
 
   const buttonClass = isOpen ? 'dropbtn' : 'notDrop';
   const DropDownIcon = isOpen ? 'openDropDownIcon' : 'NotopenDropDownIcon';
-
-
 
   return (
     <div>

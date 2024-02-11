@@ -43,6 +43,7 @@ export default function Checkout({ subTotal }) {
   }
 
   return (
+    
     <div>
       <StripeCheckout
         amount={subTotal * 100}
